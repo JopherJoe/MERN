@@ -1,0 +1,63 @@
+.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #050a30;
+  }
+  .login-box {
+    background-color: #283866;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  .login-box h2 {
+    color: white;
+  }
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  .input-group label {
+    margin-bottom: 5px;
+  }
+  
+  .input-group input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    width: 250px;
+  }
+  .button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+  }
+  .create-account-button {
+    padding: 10px 20px;
+    background-color: #cfd1d7;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  .login-button {
+    padding: 10px 20px;
+    background-color: #1b4de4;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+  }
+.small-text {
+    font-size: 14px; 
+    color: #fff; 
+  }

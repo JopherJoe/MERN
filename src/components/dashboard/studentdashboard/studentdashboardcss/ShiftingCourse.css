@@ -1,0 +1,56 @@
+.shift-form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;    
+    margin: 0 auto;
+}
+.shift-row {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    margin-bottom: 10px;
+}
+.shift-column {
+    flex: 1;
+    margin: 20px;
+    max-width: 300px;
+    text-align: left;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+}
+input {
+    width: 100%;
+    padding: 5px;
+}
+.button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.submit-button {
+    padding: 10px 20px;
+    background-color: #1b4de4;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.shift-row-last, .shift-column-last{
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+    text-align: center; 
+}
+input, select { /* Apply the styles to both input and select elements */
+    width: 100%;
+    padding: 5px;
+  }

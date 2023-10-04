@@ -1,0 +1,41 @@
+.home-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    margin: 0 auto;
+  }
+  .home-container  h2{
+      align-items: center;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      color: white;
+
+      text-transform: uppercase;
+  }
+  .home-container h3, p{
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      color: #a5ff93;
+      text-transform: uppercase;
+  }
+  .center {
+      align-items: center;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      color: white;
+  }
+  .content-container {
+    max-width: 800px; 
+    padding: 20px;
+  }
+  
+  @media (min-width: 768px) {
+    .content-container {
+      padding: 40px;
+    }
+  }
