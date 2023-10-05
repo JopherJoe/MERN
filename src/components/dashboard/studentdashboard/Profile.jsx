@@ -3,26 +3,32 @@ import { TextField } from "@material-ui/core";
 import './studentdashboardcss/Profile.css';
 
 const Profile = () => {
-  const [student, setStudent] = useState({
-    course: "",
-    firstname: "",
-    lastname: "",
-    contact_no: "",
-    email: "",
-    
+  const [profileData, setProfileData] = useState({
+    user: {
+      firstname: "",
+      lastname: "",
+      email: "",
+      contact_no: "",
+    },
+    enrollment: {
+      course: "",
+    },
   });
 
   const handleChange = (event) => {
-    const { firstname, value } = event.target;
-    console.log("handleChange called with name:", firstname, "and value:", value);
-    setStudent({ ...student, [firstname]: value });
+    const { name, value } = event.target;
+    console.log("handleChange called with name:", name, "and value:", value);
+    setProfileData({
+      ...profileData,
+      user: { ...profileData.user, [name]: value },
+    });
   };
 
   // Function to fetch student data from the server
-  const fetchStudentData = () => {
+  const fetchProfileData = () => {
     // Replace 'yourToken' with the actual token and 'yourUserId' with the user ID
-    const yourToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJKb3BoZXIgSm9lIiwibGFzdG5hbWUiOiJSaWJvIiwiZW1haWwiOiJqb3NpLnJpYm8udXBAcGhpbm1hZWQuY29tIiwiaWQiOiI2NTFlYjMzNWQ5MWQ0MDFhMDkzOWNjZDQiLCJjb250YWN0X25vIjo5NDU3NDQ1OTIxLCJpYXQiOjE2OTY1MTA3OTZ9.0Kw1v5hX0CWnfYYq5pPVI7I4VlSmplyvVGW7ijNqs9I';
-    const userId = '651eb335d91d401a0939ccd4';
+    const yourToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJKb3BoZXIgSm9lIiwibGFzdG5hbWUiOiJSaWJvIiwiZW1haWwiOiJqb3NpLnJpYm8udXBAcGhpbm1hZWQuY29tIiwiaWQiOiI2NTFlYjMzNWQ5MWQ0MDFhMDkzOWNjZDQiLCJjb250YWN0X25vIjo5NDU3NDQ1OTIxLCJpYXQiOjE2OTY1MTA3OTZ9.0Kw1v5hX0CWnfYYq5pPVI7I4VlSmplyvVGW7ijNqs9I'; // Replace with your access token
+    const userId = '651eb335d91d401a0939ccd4'; // Replace with your user ID
 
     fetch(`http://localhost:4000/todos/findById/${userId}`, {
       method: 'GET',
@@ -37,28 +43,19 @@ const Profile = () => {
       })
       .then((data) => {
         console.log("Response Data:", data);
-        // Process the response data as needed
 
-        // Check and set default values for missing or undefined fields
-        const updatedStudent = {
-          course: data.course || "",
-          firstname: data.firstname || "",
-          lastname: data.lastname || "",
-          contact_no: data.contact_no || "",
-          email: data.email || "",
-        };
-
-        setStudent(updatedStudent);
+        // Set the combined user and enrollment data
+        setProfileData(data);
       })
       .catch((error) => {
-        console.error("Error fetching student data:", error);
+        console.error("Error fetching profile data:", error);
       });
   };
 
-  // Fetch student data when the component mounts
+  // Fetch profile data when the component mounts
   useEffect(() => {
-    console.log("Fetching student data...");
-    fetchStudentData();
+    console.log("Fetching profile data...");
+    fetchProfileData();
   }, []);
 
   return (
@@ -67,44 +64,47 @@ const Profile = () => {
       <div className="horizontal">
         <TextField
           label="Course"
-          value={student.course}
+          name="course"
+          value={profileData.enrollment.course}
           onChange={handleChange}
         />
       </div>
       <TextField
         label="First Name"
-        value={student.firstname}
+        name="firstname"
+        value={profileData.user.firstname}
         onChange={handleChange}
-          InputLabelProps={{
-            shrink: !!student.firstname, // Set shrink to true when there's content
-               }}
+        InputLabelProps={{
+          shrink: !!profileData.user.firstname,
+        }}
       />
       <TextField
         label="Last Name"
-        value={student.lastname}
+        name="lastname"
+        value={profileData.user.lastname}
         onChange={handleChange}
         InputLabelProps={{
-          shrink: !!student.firstname, // Set shrink to true when there's content
-             }}
+          shrink: !!profileData.user.lastname,
+        }}
       />
-      
       <TextField
         label="Contact Number"
-        value={student.contact_no}
+        name="contact_no"
+        value={profileData.user.contact_no}
         onChange={handleChange}
         InputLabelProps={{
-          shrink: !!student.firstname, // Set shrink to true when there's content
-             }}
+          shrink: !!profileData.user.contact_no,
+        }}
       />
       <TextField
         label="Email Address"
-        value={student.email}
+        name="email"
+        value={profileData.user.email}
         onChange={handleChange}
         InputLabelProps={{
-          shrink: !!student.firstname, // Set shrink to true when there's content
-             }}
+          shrink: !!profileData.user.email,
+        }}
       />
-      
     </div>
   );
 };
