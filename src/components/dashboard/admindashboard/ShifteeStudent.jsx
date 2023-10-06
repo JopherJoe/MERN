@@ -8,7 +8,8 @@ function ShifteeStudent() {
     { id: 2, firstName: 'Juan', lastName: 'Dela Cruz', prevCourse: 'BIST', newCourse: 'BSA', reason: '' },
     { id: 3, firstName: 'Angel', lastName: 'Locsin', prevCourse: 'BSIT', newCourse: 'BSCE', reason: '' },
   ];
-
+  const handleApproveRequest = (request) => {
+  };
   return (
     <div className="centered">
       <p>Total Shiftee Students: {shifteeData.length}</p>
@@ -20,6 +21,7 @@ function ShifteeStudent() {
             <th>Previous Course</th>
             <th>New Course</th>
             <th>Reason for Shifting</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +32,12 @@ function ShifteeStudent() {
               <td>{student.prevCourse}</td>
               <td>{student.newCourse}</td>
               <td>{student.reason}</td>
+              <td>
+                <button onClick={() => handleApproveRequest()}>
+                  Approve
+                </button>
+              </td>
+
             </tr>
           ))}
         </tbody>

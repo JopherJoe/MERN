@@ -8,33 +8,23 @@ function AdminLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
+  
     if (email === '') {
       alert('Email is required');
       return;
-    } else if (password === '') {
+    }
+  
+    if (password === '') {
       alert('Password is required');
       return;
     }
-
-    try {
-      const response = await fetch('https://localhost:3000/api/admin-login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (response.ok) {
-        navigate('/admin-dashboard/dashboard');
-      } else {
-        alert('Invalid email or password');
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      alert('Login failed. Please try again later.');
+  
+    if (email === 'admin@gmail.com' && password === 'admin') {
+      navigate('/admin-dashboard/dashboard');
+    } else {
+      alert('Invalid email or password');
     }
   };
 
