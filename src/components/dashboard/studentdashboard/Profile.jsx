@@ -11,7 +11,7 @@ const Profile = () => {
       contact_no: "",
     },
     enrollment: {
-      course: "",
+      course: "", // Initialize with an empty string
     },
   });
 
@@ -26,87 +26,107 @@ const Profile = () => {
 
   // Function to fetch student data from the server
   const fetchProfileData = () => {
-    // Replace 'yourToken' with the actual token and 'yourUserId' with the user ID
-    const yourToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJKb3BoZXIgSm9lIiwibGFzdG5hbWUiOiJSaWJvIiwiZW1haWwiOiJqb3NpLnJpYm8udXBAcGhpbm1hZWQuY29tIiwiaWQiOiI2NTFlYjMzNWQ5MWQ0MDFhMDkzOWNjZDQiLCJjb250YWN0X25vIjo5NDU3NDQ1OTIxLCJpYXQiOjE2OTY1MTA3OTZ9.0Kw1v5hX0CWnfYYq5pPVI7I4VlSmplyvVGW7ijNqs9I'; // Replace with your access token
-    const userId = '651eb335d91d401a0939ccd4'; // Replace with your user ID
-
+    const yourToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJKb3BoZXIgSm9lIEdJSk9FU0hPVCIsImxhc3RuYW1lIjoiUmlibyIsImVtYWlsIjoiam9zaS5yaWJvLnVwQHBoaW5tYWVkLmNvbSIsImlkIjoiNjUxZmQxMTBmNzYxM2I4MzVhYTYxMjJiIiwiY29udGFjdF9ubyI6OTQ1NzQ0NTkyMSwiaWF0IjoxNjk2NTgzOTkzfQ.edBYpJJJ2Fx3W48Ljcy8DLWVgCH79wcGa9MmRWhacu8';
+    const userId = '651fd110f7613b835aa6122b'; // Replace with the actual user ID
+  
     fetch(`http://localhost:4000/todos/findById/${userId}`, {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${yourToken}`, // Include the token in the Authorization header
+        'Authorization': `Bearer ${yourToken}`,
         'Content-Type': 'application/json',
       },
     })
-      .then((response) => {
+      .then(async (response) => {
         console.log("Response Status:", response.status);
+        if (!response.ok) {
+          const errorMessage = await response.text(); // Get the error message from the response body
+          throw new Error(`HTTP Error! Status: ${response.status}, Message: ${errorMessage}`);
+        }
         return response.json();
       })
       .then((data) => {
         console.log("Response Data:", data);
-
-        // Set the combined user and enrollment data
-        setProfileData(data);
+  
+        const profile = {
+          user: {
+            firstname: data.user ? data.user.firstname || "" : "",
+            lastname: data.user ? data.user.lastname || "" : "",
+            email: data.user ? data.user.email || "" : "",
+            contact_no: data.user ? data.user.contact_no || "" : "",
+          },
+          enrollment: {
+            course: data.enrollment ? data.enrollment.course || "Not enrolled" : "Not enrolled",
+            // Add any other enrollment fields you need
+          },
+        };
+        setProfileData(profile);
       })
       .catch((error) => {
         console.error("Error fetching profile data:", error);
+        // Handle the error, for example, by showing an error message to the user.
       });
   };
-
+  
   // Fetch profile data when the component mounts
   useEffect(() => {
     console.log("Fetching profile data...");
     fetchProfileData();
   }, []);
 
+
   return (
     <div className="profile-container">
       <h1>Profile information</h1>
-      <div className="horizontal">
-        <TextField
-          label="Course"
-          name="course"
-          value={profileData.enrollment.course}
-          onChange={handleChange}
-        />
-      </div>
-      <TextField
-        label="First Name"
-        name="firstname"
-        value={profileData.user.firstname}
-        onChange={handleChange}
-        InputLabelProps={{
-          shrink: !!profileData.user.firstname,
-        }}
-      />
-      <TextField
-        label="Last Name"
-        name="lastname"
-        value={profileData.user.lastname}
-        onChange={handleChange}
-        InputLabelProps={{
-          shrink: !!profileData.user.lastname,
-        }}
-      />
-      <TextField
-        label="Contact Number"
-        name="contact_no"
-        value={profileData.user.contact_no}
-        onChange={handleChange}
-        InputLabelProps={{
-          shrink: !!profileData.user.contact_no,
-        }}
-      />
-      <TextField
-        label="Email Address"
-        name="email"
-        value={profileData.user.email}
-        onChange={handleChange}
-        InputLabelProps={{
-          shrink: !!profileData.user.email,
-        }}
-      />
+      {profileData.user ? (
+        <div>
+          <TextField
+            label="Course"
+            name="course"
+            value={profileData.enrollment ? profileData.enrollment.course || 'No course data available' : 'No enrollment data available'}
+            onChange={handleChange}
+          />
+          <TextField
+            label="First Name"
+            name="firstname"
+            value={profileData.user.firstname || ""}
+            onChange={handleChange}
+            InputLabelProps={{
+              shrink: !!profileData.user.firstname,
+            }}
+          />
+          <TextField
+            label="Last Name"
+            name="lastname"
+            value={profileData.user.lastname || ""}
+            onChange={handleChange}
+            InputLabelProps={{
+              shrink: !!profileData.user.lastname,
+            }}
+          />
+          <TextField
+            label="Contact Number"
+            name="contact_no"
+            value={profileData.user.contact_no || ""}
+            onChange={handleChange}
+            InputLabelProps={{
+              shrink: !!profileData.user.contact_no,
+            }}
+          />
+          <TextField
+            label="Email Address"
+            name="email"
+            value={profileData.user.email || ""}
+            onChange={handleChange}
+            InputLabelProps={{
+              shrink: !!profileData.user.email,
+            }}
+          />
+        </div>
+      ) : (
+        <div>Loading...</div>
+      )}
     </div>
   );
-};
+      };
 
 export default Profile;

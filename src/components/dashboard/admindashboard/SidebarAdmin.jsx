@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom';    
 import 
 {BsFillFilePersonFill, BsGrid1X2Fill, BsFillShiftFill} from 'react-icons/bs'
-import {CgProfile} from 'react-icons/cg'
 import {BiRegistered} from 'react-icons/bi'
 
 
@@ -24,8 +23,8 @@ function SidebarAdmin({openSidebarToggle, OpenSidebar}) {
                 </Link>
             </li>
             <li className='sidebar-list-item'>
-                <Link to="/admin-dashboard/admin-profile">
-                    <CgProfile className='icon'/> Profile
+                <Link to="/admin-dashboard/enrollees">
+                    <BiRegistered className='icon'/> Enrollees
                 </Link>
             </li>
             <li className='sidebar-list-item'>
