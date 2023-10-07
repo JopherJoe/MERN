@@ -26,7 +26,7 @@ const Profile = () => {
 
   // Function to fetch student data from the server
   const fetchProfileData = () => {
-    const yourToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJKb3BoZXIgSm9lIEdJSk9FU0hPVCIsImxhc3RuYW1lIjoiUmlibyIsImVtYWlsIjoiam9zaS5yaWJvLnVwQHBoaW5tYWVkLmNvbSIsImlkIjoiNjUxZmQxMTBmNzYxM2I4MzVhYTYxMjJiIiwiY29udGFjdF9ubyI6OTQ1NzQ0NTkyMSwiaWF0IjoxNjk2NTgzOTkzfQ.edBYpJJJ2Fx3W48Ljcy8DLWVgCH79wcGa9MmRWhacu8';
+    const yourToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJKb3BoZXIgSm9lIEdJSk9FU0hPVCIsImxhc3RuYW1lIjoiUmlibyIsImVtYWlsIjoiam9zaS5yaWJvLnVwQHBoaW5tYWVkLmNvbSIsImlkIjoiNjUxZmQxMTBmNzYxM2I4MzVhYTYxMjJiIiwiY29udGFjdF9ubyI6OTQ1NzQ0NTkyMSwiaWF0IjoxNjk2NjEyMDY0fQ.twJXZWGtlOmnVu8FWRRmKaNAdKphCX0wAlqCFt1C9Jo'; // Replace with your authentication token
     const userId = '651fd110f7613b835aa6122b'; // Replace with the actual user ID
   
     fetch(`http://localhost:4000/todos/findById/${userId}`, {
@@ -72,7 +72,6 @@ const Profile = () => {
     console.log("Fetching profile data...");
     fetchProfileData();
   }, []);
-
 
   return (
     <div className="profile-container">
@@ -127,6 +126,6 @@ const Profile = () => {
       )}
     </div>
   );
-      };
+};
 
 export default Profile;

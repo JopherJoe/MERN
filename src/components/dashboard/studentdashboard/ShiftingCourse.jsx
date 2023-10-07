@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import './studentdashboardcss/ShiftingCourse.css';
 
 function ShiftingCourse() {
@@ -8,15 +8,38 @@ function ShiftingCourse() {
   const [prevCourse, setPrevCourse] = useState('');
   const [newCourse, setNewCourse] = useState('');
   const [reasonShift, setReasonShift] = useState('');
+  const [email, setEmail] = useState('');
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const handleShiftingCourse = () => {
     if (firstName === '' || lastName === '' || prevCourse === '' || newCourse === '' || reasonShift === '') {
       alert('All fields are required');
     } else {
-      alert('Request change of subject sent');
-      navigate('/student-dashboard/home');
+      // Create an object with the request data
+      const requestData = {
+        firstname: firstName,
+        lastname: lastName,
+        previouscourse: prevCourse,
+        newcourse: newCourse,
+        reason: reasonShift,
+        email: email
+      };
+  
+      // Make a POST request to your server with the requestData
+      fetch('http://localhost:4000/change/request', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          alert(data.message);
+          //navigate('/student-dashboard/home');
+        })
+        .catch((error) => console.error('Error submitting course change request:', error));
     }
   };
 
@@ -38,10 +61,10 @@ function ShiftingCourse() {
     <div className="shift-form-container">
       <div className="shift-row">
         <div className="column">
-          <label htmlFor="firstName">First Name*</label>
+          <label htmlFor="firstname">First Name*</label>
           <input
             type="text"
-            id="firstName"
+            id="firstname"
             name="input1"
             autoComplete="given-name"
             value={firstName}
@@ -60,6 +83,7 @@ function ShiftingCourse() {
           />
         </div>
       </div>
+      
       <div className="shift-row">
         <div className="shift-column">
           <label htmlFor="prevCourse">Previous course*</label>
@@ -103,6 +127,18 @@ function ShiftingCourse() {
             name="input5"
             value={reasonShift}
             onChange={(e) => setReasonShift(e.target.value)}
+          />
+        </div>
+      </div>
+      <div className="shift-row-last">
+        <div className="shift-column-last">
+          <label htmlFor="email">Email*</label>
+          <input
+            type="email"
+            id="email"
+            name="input6"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
       </div>
