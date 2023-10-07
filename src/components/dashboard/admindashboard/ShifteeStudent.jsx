@@ -1,15 +1,54 @@
-import React from 'react';
+
 import './admindashboardcss/Table.css';
+import React, {useState, useEffect } from 'react';
 
 
 function ShifteeStudent() {
-  const shifteeData = [
-    { id: 1, firstName: 'John', lastName: 'Doe', prevCourse: 'BSIT', newCourse: 'BSN', reason: '' },
-    { id: 2, firstName: 'Juan', lastName: 'Dela Cruz', prevCourse: 'BIST', newCourse: 'BSA', reason: '' },
-    { id: 3, firstName: 'Angel', lastName: 'Locsin', prevCourse: 'BSIT', newCourse: 'BSCE', reason: '' },
-  ];
-  const handleApproveRequest = (request) => {
+  const [shifteeData, setShifteeData] = useState([]);
+  
+  useEffect(() => {
+    fetch('http://localhost:4000/change/get-request')
+      .then((response) => response.json())
+      .then((data) => {
+        setShifteeData(data);
+      })
+      .catch((error) => console.error('Error fetching shiftee student data:', error));
+  }, []);
+
+
+  const handleApproveRequest = (id, userEmail) => {
+    fetch(`http://localhost:4000/change/approve-request/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: userEmail }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP Error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('Request approved:', data);
+      })
+      .catch((error) => {
+        console.error('Error approving request:', error.message);
+      });
   };
+
+  const handleRejectRequest = (id) => {
+    fetch(`http://localhost:4000/change/reject-request/${id}`, {
+      method: 'PUT',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Request rejected:', data);
+      })
+      .catch((error) => console.error('Error rejecting request:', error));
+  };
+
   return (
     <div className="centered">
       <p>Total Shiftee Students: {shifteeData.length}</p>
@@ -25,19 +64,21 @@ function ShifteeStudent() {
           </tr>
         </thead>
         <tbody>
-          {shifteeData.map(student => (
-            <tr key={student.id}>
-              <td>{student.firstName}</td>
-              <td>{student.lastName}</td>
-              <td>{student.prevCourse}</td>
-              <td>{student.newCourse}</td>
+          {shifteeData.map((student) => (
+            <tr key={student._id}>
+              <td>{student.firstname}</td>
+              <td>{student.lastname}</td>
+              <td>{student.previouscourse}</td>
+              <td>{student.newcourse}</td>
               <td>{student.reason}</td>
               <td>
-                <button onClick={() => handleApproveRequest()}>
+                <button onClick={() => handleApproveRequest(student._id, student.email)}>
                   Approve
                 </button>
+                <button onClick={() => handleRejectRequest(student._id)}>
+                  Reject
+                </button>
               </td>
-
             </tr>
           ))}
         </tbody>
