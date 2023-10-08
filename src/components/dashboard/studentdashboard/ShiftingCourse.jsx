@@ -10,7 +10,7 @@ function ShiftingCourse() {
   const [reasonShift, setReasonShift] = useState('');
   const [email, setEmail] = useState('');
 
-  //const navigate = useNavigate();
+ //const navigate = useNavigate();
 
   const handleShiftingCourse = () => {
     if (firstName === '' || lastName === '' || prevCourse === '' || newCourse === '' || reasonShift === '') {
@@ -37,7 +37,7 @@ function ShiftingCourse() {
         .then((response) => response.json())
         .then((data) => {
           alert(data.message);
-          //navigate('/student-dashboard/home');
+         // navigate('/student-dashboard/home');
         })
         .catch((error) => console.error('Error submitting course change request:', error));
     }
