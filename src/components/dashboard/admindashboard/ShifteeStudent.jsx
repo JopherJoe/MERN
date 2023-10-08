@@ -3,8 +3,10 @@ import './admindashboardcss/Table.css';
 import React, {useState, useEffect } from 'react';
 
 
+
 function ShifteeStudent() {
   const [shifteeData, setShifteeData] = useState([]);
+  const [emailStatus, setEmailStatus] = useState('');
   
   useEffect(() => {
     fetch('http://localhost:4000/change/get-request')
@@ -15,43 +17,64 @@ function ShifteeStudent() {
       .catch((error) => console.error('Error fetching shiftee student data:', error));
   }, []);
 
-
-  const handleApproveRequest = (id, userEmail) => {
-    fetch(`http://localhost:4000/change/approve-request/${id}`, {
-      method: 'PUT',
+  const handleApprove = (id, userEmail) => {
+    fetch(`http://localhost:4000/change/request-approve/${id}`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ email: userEmail }),
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP Error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log('Request approved:', data);
-      })
-      .catch((error) => {
-        console.error('Error approving request:', error.message);
-      });
-  };
-
-  const handleRejectRequest = (id) => {
-    fetch(`http://localhost:4000/change/reject-request/${id}`, {
-      method: 'PUT',
-    })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Request rejected:', data);
-      })
-      .catch((error) => console.error('Error rejecting request:', error));
-  };
+        if (data.message === 'Your request has been approved') {
+          console.log('Request approved successfully');
+          setShifteeData((prevData) =>
+            prevData.filter((student) => student._id !== id)
+          );
+          setEmailStatus('Email sent successfully');
+        } else {
+          console.error('Approval failed:', data.message);
 
+          setEmailStatus('Email sending failed');
+        }
+      })
+      .catch((error) =>
+        console.error('Error during approval:', error)
+      );
+  };
+  const handleReject = (id, userEmail) =>{
+    fetch(`http://localhost:4000/change/request-reject/${id}`,{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({email:userEmail}),
+    })
+    .then((response)=> response.json())
+    .then((data)=> {
+      if (data.message === 'Your request has been rejected'){
+        console.log('Request Reject');
+        setShifteeData((prevData)=>
+        prevData.filter((student) => student._id !==id)
+        );
+        setEmailStatus('Email sent Successfully');
+      }else{
+        console.error('Rejected failed: ', data.message);
+
+        setEmailStatus('Email sending failed')
+      }
+    })
+    .catch((error)=>
+    console.error('Error during Rejecting: ', error)
+    );
+  };
+  
+  
   return (
     <div className="centered">
       <p>Total Shiftee Students: {shifteeData.length}</p>
+      {emailStatus && <div className={emailStatus === 'Email sent successfully' ? 'success' : 'error'}>{emailStatus}</div>}
       <table>
         <thead>
           <tr>
@@ -72,10 +95,10 @@ function ShifteeStudent() {
               <td>{student.newcourse}</td>
               <td>{student.reason}</td>
               <td>
-                <button onClick={() => handleApproveRequest(student._id, student.email)}>
+                <button onClick={() => handleApprove(student._id, student.email)}>
                   Approve
                 </button>
-                <button onClick={() => handleRejectRequest(student._id)}>
+                <button onClick = {() => handleReject(student._id, student.email)}>
                   Reject
                 </button>
               </td>
