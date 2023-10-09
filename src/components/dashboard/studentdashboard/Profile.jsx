@@ -26,8 +26,8 @@ const Profile = () => {
 
   // Function to fetch student data from the server
   const fetchProfileData = () => {
-    const yourToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJKb3BoZXIiLCJsYXN0bmFtZSI6IlJpYm8iLCJlbWFpbCI6Impvc2kucmliby51cEBwaGlubWFlZC5jb20iLCJpZCI6IjY1MjBkNTI4NjEyODBlNGVkMjFkM2U5NiIsImNvbnRhY3Rfbm8iOjk0NTc0NDU5MjEsImlhdCI6MTY5Njc1NDA0MX0.U9WtDkxlnC7sUFrmyaA_qTJ8gXVMRpC9c_w0nAmY5lA'; // Replace with your authentication token
-    const userId = '6520d52861280e4ed21d3e96'; // Replace with the actual user ID
+    const yourToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJKb3BoZXIgSm9lIiwibGFzdG5hbWUiOiJSaWJvIiwiZW1haWwiOiJqb3NpLnJpYm8udXBAcGhpbm1hZWQuY29tIiwiaWQiOiI2NTIzNzI0ZDJhZjIzMjFmMTVhNjIxYmMiLCJjb250YWN0X25vIjo5NDU3NDQ1OTIxLCJpYXQiOjE2OTY4MjE4NTV9._O3YxEsSVzKCdovQ8ronsy2gIRBV71SF2Y4T7rPXvBI';
+    const userId = '6523724d2af2321f15a621bc'; // Replace with the actual user ID
   
     fetch(`http://localhost:4000/todos/findById/${userId}`, {
       method: 'GET',

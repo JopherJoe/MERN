@@ -38,7 +38,7 @@ function Enrollment() {
 
       };
 
-      const yourToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJKb3BoZXIgSm9lIEdJSk9FU0hPVCIsImxhc3RuYW1lIjoiUmlibyIsImVtYWlsIjoiam9zaS5yaWJvLnVwQHBoaW5tYWVkLmNvbSIsImlkIjoiNjUxZmQxMTBmNzYxM2I4MzVhYTYxMjJiIiwiY29udGFjdF9ubyI6OTQ1NzQ0NTkyMSwiaWF0IjoxNjk2NTgzOTkzfQ.edBYpJJJ2Fx3W48Ljcy8DLWVgCH79wcGa9MmRWhacu8';
+      const yourToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJKb3BoZXIgSm9lIiwibGFzdG5hbWUiOiJSaWJvIiwiZW1haWwiOiJqb3NpLnJpYm8udXBAcGhpbm1hZWQuY29tIiwiaWQiOiI2NTIzNzI0ZDJhZjIzMjFmMTVhNjIxYmMiLCJjb250YWN0X25vIjo5NDU3NDQ1OTIxLCJpYXQiOjE2OTY4MjE4NTV9._O3YxEsSVzKCdovQ8ronsy2gIRBV71SF2Y4T7rPXvBI';
       
       // Send a POST request to the enrollment URL
       fetch('http://localhost:4000/enroll', {
