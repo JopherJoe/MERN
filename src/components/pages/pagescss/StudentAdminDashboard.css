@@ -206,3 +206,9 @@ body {
     display: none;
   }
 }
+.header-right{
+  position: absolute;
+  top: 1;
+  right: 0;
+
+}

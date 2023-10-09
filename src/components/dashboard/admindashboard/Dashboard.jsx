@@ -1,60 +1,13 @@
 import React, { Component } from "react";
 import { Card, Button } from "react-bootstrap";
-import { Chart } from 'chart.js/auto';  
 import './admindashboardcss/Dashboard.css';
 
 class Dashboard extends Component {
   state = {
-    registeredStudents: 0,
-    enrollmentRequests: 0,
-    shifteeStudents: 0,
+    registeredStudents: [],
+    enrollmentRequests: [],
+    shifteeStudents: [],
   };
-
-  chartRef = React.createRef();
-
-  componentDidMount() {
-    this.createChart();
-  }
-
-  createChart() {
-    const chartCanvas = this.chartRef.current.getContext("2d");
-
-    new Chart(chartCanvas, {
-      type: "bar",
-      data: {
-        labels: ["Registered Students", "Enrollment Requests", "Shiftee Students"],
-        datasets: [
-          {
-            label: "Number of Students",
-            data: [
-              this.state.registeredStudents,  
-              this.state.enrollmentRequests,
-              this.state.shifteeStudents,
-            ],
-            backgroundColor: [
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(0, 128, 0, 0.2)",
-            ],
-            borderColor: [
-              "rgba(75, 192, 192, 1)",
-              "rgba(255, 99, 132, 1)",
-              "rgb(0, 128, 0, 1 )",
-            ],
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
-      },
-    );
-  }
 
   render() {
     return (
@@ -74,9 +27,6 @@ class Dashboard extends Component {
           <p>{this.state.shifteeStudents}</p>
           <Button href="/admin-dashboard/shiftee-student">View more</Button>
         </Card>
-        <div className="chart-container">
-          <canvas ref={this.chartRef}></canvas>
-        </div>
       </div>
     );
   }

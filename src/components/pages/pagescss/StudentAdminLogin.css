@@ -61,3 +61,33 @@
     font-size: 14px; 
     color: #fff; 
   }
+  @media (max-width: 576px) {
+    .login-box {
+      width: 100%;
+    }
+  
+    .input-group {
+      flex-direction: row;
+    }
+  
+    .input-group label {
+      width: 30%;
+    }
+  
+    .input-group input {
+      width: 70%;
+    }
+  
+    .button-group {
+      flex-direction: column;
+    }
+  
+    .login-button {
+      width: 100%;
+    }
+  
+    .small-text {
+      font-size: 12px;
+    }
+  }
+  
