@@ -1,85 +1,51 @@
-import React, { useState } from 'react';
 import web1 from './img/web1.jpg';
 import web2 from './img/web2.jpg';
 import web3 from './img/web3.jpg';
+import web4 from './img/web4.jpg';
 import './studentdashboardcss/Courses.css';
 
 const Webdev = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(null);
-
-  const images = [
-    {
-      id: 1,
-      src: web1,
-      caption: 'Image 1',
-    },
-    {
-      id: 2,
-      src: web2,
-      caption: 'Image 2',
-    },
-    {
-      id: 3,
-      src: web3,
-      caption: 'Image 3',
-    },
-  ];
-
-  const openModal = (index) => {
-    setSelectedIndex(index);
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setSelectedIndex(null);
-    setModalOpen(false);
-  };
-
-  const goToNextImage = () => {
-    if (selectedIndex !== null && selectedIndex < images.length - 1) {
-      setSelectedIndex(selectedIndex + 1);
-    }
-  };
-
-  const goToPreviousImage = () => {
-    if (selectedIndex !== null && selectedIndex > 0) {
-      setSelectedIndex(selectedIndex - 1);
-    }
-  };
-
   return (
-    <div className="animation-container">
-    <div className="centered-text">
-      <p>
-      Web development involves creating and maintaining websites and applications using programming languages, frameworks, and tools. Salary rates for web developers vary based on location, experience, skills, and role. In the US, average annual salaries range from $50,000 to $120,000. Junior developers earn less, while senior or specialized developers earn more.
-      </p>
+    <div className="box_container">
+      <Box1 />
+      <Box2 />
+      <Box3 />
+      <Box4 />
     </div>
-    <div className="image-gallery">
-      {images.map((image, index) => (
-        <div key={image.id} className="gallery-item">
-          <img
-            src={image.src}
-            alt={image.caption}
-            onClick={() => openModal(index)}
-          />
-        </div>
-      ))}
-    </div>
-    {modalOpen && selectedIndex !== null && (
-      <div className="modal">
-        <div className="modal-content">
-          <span className="close" onClick={closeModal}>
-            &times;
-          </span>
-          <img src={images[selectedIndex].src} alt={images[selectedIndex].caption} />
-          <p>{images[selectedIndex].caption}</p>
-          <button onClick={goToPreviousImage}>Previous</button>
-          <button onClick={goToNextImage}>Next</button>
-        </div>
-      </div>
-    )}
-  </div>
-);
+  );
 };
+
+
+const Box1 = () => {
+  return (
+    <div className="box1">
+      <img src={web1} className="img_box1" alt="1" />
+    </div>
+  );
+};
+
+const Box2 = () => {
+  return (
+    <div className="box2">
+      <img src={web2} className="img_box2" alt="2" />
+    </div>
+  );
+};
+
+const Box3 = () => {
+  return (
+    <div className="box3">
+      <img src={web3} className="img_box3" alt="3" />
+    </div>
+  );
+};
+
+const Box4 = () => {
+  return (
+    <div className="box4">
+      <img src={web4} className="img_box4" alt="4" />
+    </div>
+  );
+};
+
 export default Webdev;

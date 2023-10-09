@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './admindashboardcss/Table.css';
 
-function RegisteredStudent() {
-  const studentData = [
-    { id: 1, firstName: 'John', lastName: 'Doe', email: 'johndoe@gmail.com', number: '09090909090', course: 'BSIT' },
-    { id: 2, firstName: 'Juan', lastName: 'Dela cruz', email: 'juan@gmail.com', number: '09090909090', course: 'BSIT' },
-    { id: 3, firstName: 'Angel', lastName: 'Locsin', email: 'angel@.com', number: '09090909090', course: 'BIST' },
-    { id: 4, firstName: 'Sue', lastName: 'Ramirez', email: 'sueramirez.com', number: '09090909090', course: 'BSIT' },
-  ];
+
+function Registration() {
+  const [registeredStudent, setRegisteredStudent] = useState([
+  ]);
+
+  useEffect(() => {
+    fetch('http://localhost:4000/todos/get')
+      .then((response) => response.json())
+      .then((data) => {
+        setRegisteredStudent(data);
+      })
+      .catch((error) => console.error('Error fetching shiftee student data: ', error));
+  }, []);
+  
 
   return (
     <div className="centered">
-      <p>Total Registered Students: {studentData.length}</p>
+      <p>Total Registered Students: {registeredStudent.length}</p>
       <table>
         <thead>
           <tr>
@@ -19,17 +26,15 @@ function RegisteredStudent() {
             <th>Last Name</th>
             <th>Email</th>
             <th>Phone Number</th>
-            <th>Course</th>
           </tr>
         </thead>
         <tbody>
-          {studentData.map(student => (
+          {registeredStudent.map(student => (
             <tr key={student.id}>
-              <td>{student.firstName}</td>
-              <td>{student.lastName}</td>
+              <td>{student.firstname}</td>
+              <td>{student.lastname}</td>
               <td>{student.email}</td>
-              <td>{student.number}</td>
-              <td>{student.course}</td>
+              <td>{student.contact_no}</td>
             </tr>
           ))}
         </tbody>
@@ -38,4 +43,4 @@ function RegisteredStudent() {
   );
 }
 
-export default RegisteredStudent;
+export default Registration;

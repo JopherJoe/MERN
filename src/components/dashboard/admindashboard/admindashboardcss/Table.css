@@ -11,6 +11,7 @@ p {
     text-align: center;
     font-size: 18px;
     font-weight: bold;
+    color:white;
 }
 table {
     width: 100%;
@@ -38,3 +39,21 @@ login-button{
     font-size: 16px;
     font-weight: bold;
 } 
+@media (max-width: 576px) {
+  .centered {
+    width: 100%;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  th, td {
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+
+  login-button {
+    width: 100%;
+  }
+}
