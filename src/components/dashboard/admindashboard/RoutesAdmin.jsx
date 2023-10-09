@@ -3,16 +3,17 @@ import Dashboard from './Dashboard';
 import Enrollees from './Enrollees';
 import RegisteredStudent from './RegisteredStudent';
 import ShifeeStudent from './ShifteeStudent';
+import AdminPrivateRoute from './AdminPrivateRoute';
 import { Route, Routes } from 'react-router-dom';
 
 function RoutesAdmin() {
   return (
     <div>
         <Routes>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="enrollees" element={<Enrollees />} />
-          <Route path="registered-student" element={<RegisteredStudent />} />
-          <Route path="shiftee-student" element={<ShifeeStudent />} />
+          <Route path="dashboard" element={<AdminPrivateRoute><Dashboard /></AdminPrivateRoute>} />
+          <Route path="enrollees" element={<AdminPrivateRoute><Enrollees /></AdminPrivateRoute>} />
+          <Route path="registered-student" element={<AdminPrivateRoute><RegisteredStudent /></AdminPrivateRoute>} />
+          <Route path="shiftee-student" element={<AdminPrivateRoute><ShifeeStudent /></AdminPrivateRoute>} />
         </Routes>
       
     </div>

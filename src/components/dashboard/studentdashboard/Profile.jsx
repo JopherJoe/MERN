@@ -77,7 +77,7 @@ const Profile = () => {
     <div className="profile-container">
       <h1>Profile information</h1>
       {profileData.user ? (
-        <div>
+        <div className="text-field">
           <TextField
             label="Course"
             name="course"

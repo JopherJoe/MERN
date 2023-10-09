@@ -10,23 +10,24 @@ import Animation from './Animation';
 import Enrollment from './Enrollment';
 import ShiftingCourse from './ShiftingCourse';
 import ContactUs from './ContactUs'
+import StudentPrivateRoute from './StudentPrivateRoute';
 import { Route, Routes } from 'react-router-dom';
 
 function RoutesStudent() {
   return (
     <div>        
         <Routes>
-    <Route path="home" element={<Home />} />
-    <Route path="profile" element={<Profile />} />
-    <Route path="programs" element={<Programs />} />
-    <Route path="bscs" element={<Bscs />} />
-    <Route path="bsit" element={<Bsit />} />
-    <Route path="web-dev" element={<Webdev />} />
-    <Route path="sys-dev" element={<Sysdev />} />
-    <Route path="animation" element={<Animation />} />
-    <Route path="enrollment" element={<Enrollment />} />
-    <Route path="shifting-course" element={<ShiftingCourse />} />
-    <Route path="contact-us" element={<ContactUs />} />
+    <Route path="home" element={<StudentPrivateRoute><Home /></StudentPrivateRoute>} />
+    <Route path="profile" element={<StudentPrivateRoute><Profile /></StudentPrivateRoute>} />
+    <Route path="programs" element={<StudentPrivateRoute><Programs /></StudentPrivateRoute>} />
+    <Route path="bscs" element={<StudentPrivateRoute><Bscs /></StudentPrivateRoute>} />
+    <Route path="bsit" element={<StudentPrivateRoute><Bsit /></StudentPrivateRoute>} />
+    <Route path="web-dev" element={<StudentPrivateRoute><Webdev /></StudentPrivateRoute>} />
+    <Route path="sys-dev" element={<StudentPrivateRoute><Sysdev /></StudentPrivateRoute>} />
+    <Route path="animation" element={<StudentPrivateRoute><Animation /></StudentPrivateRoute>} />
+    <Route path="enrollment" element={<StudentPrivateRoute><Enrollment /></StudentPrivateRoute>} />
+    <Route path="shifting-course" element={<StudentPrivateRoute><ShiftingCourse /></StudentPrivateRoute>} />
+    <Route path="contact-us" element={<StudentPrivateRoute><ContactUs /></StudentPrivateRoute>} />
     </Routes>
       
     </div>

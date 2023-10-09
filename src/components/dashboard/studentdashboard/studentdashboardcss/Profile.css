@@ -6,15 +6,27 @@
     padding: 10px;
     margin: 0 auto;
     text-align: left;
-}
-.profile-container label, h1, p {
+    align-items: center; 
+    gap: 10px; 
+  }
+  .text-field{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; 
+    
+  }
+  .profile-container label, h1 {
     color: white;
-}
-.profile-container h1 {
-    margin-bottom: 10%;
-}
-.horizontal {
+    font-weight: bold; 
+  }
+  
+  .horizontal {
     display: flex;
     align-items: center;
     margin-left: 15px;
-}
+  }
+  .MuiInputBase-input {
+    color: white !important; 
+  }

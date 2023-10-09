@@ -64,3 +64,32 @@
   font-size: 16px;
 }
 
+@media (max-width: 576px) {
+  .create-account-box {
+    width: 100%;
+  }
+
+  .input-group {
+    flex-direction: row;
+    margin-bottom: 5px;
+  }
+
+  .input-group label {
+    width: 30%;
+  }
+
+  .input-group input {
+    width: 70%;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .create-account-button,
+  .login-button {
+    width: 100%;
+  }
+}
+
+

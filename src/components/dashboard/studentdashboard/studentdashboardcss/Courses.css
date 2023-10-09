@@ -1,68 +1,56 @@
-.image-gallery {
+.box_container {
+    width: 60%;
+    height: 250px;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center; 
     position: absolute;
-    top: 50%;
     left: 50%;
+    top: 50%; 
     transform: translate(-50%, -50%);
-    padding: 10px;
-    margin: 0 auto;
-    margin-top: 10px;
-}
-.image-gallery {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-.gallery-item {
-    margin: 10px; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px; 
-    height: 200px; 
-    overflow: hidden; 
-    margin-top: 20%;
+    border-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-.gallery-item img {
-    width: 250%;
-    height: 250%;
-    object-fit: contain; 
-    cursor: pointer;
+.box1, .box2, .box3, .box4 {
+    height: 100%;
+    width: 30%;
+    border-radius: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
-.modal {
+
+.img_box1, .img_box2, .img_box3, .img_box4 {
+    width: 100%;
+    object-fit: cover; 
+    border: 10px;
     display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1;
 }
-.modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
+
+.box1:hover, .box2:hover, .box3:hover, .box4:hover {
+    width: 80%;
+    transition: all 0.5s;
+    border-radius: 10px;
 }
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+.paragraph{
+    color: white;
     font-size: 20px;
-    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
 }
-.modal img {
-    max-width: 100%;
-    height: auto;
-}
-  .centered-text {
-    text-align: center; 
-    margin-top: 10%; 
-    font-size: 18px;
-    max-width: 600px;
-}
+
+@media (max-width: 768px) {
+    .box_container {
+      width: 90%;
+    }
+  
+    .box1, .box2, .box3, .box4 {
+      width: 45%;
+    }
+  }
+  
+  
+  

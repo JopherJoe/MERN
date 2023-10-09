@@ -8,25 +8,28 @@ function AdminLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  
   const handleLogin = (e) => {
     e.preventDefault();
-  
+    window.localStorage.setItem("userType", "admin");
     if (email === '') {
       alert('Email is required');
       return;
     }
-  
+
     if (password === '') {
       alert('Password is required');
       return;
     }
-  
+
     if (email === 'admin@gmail.com' && password === 'admin') {
+      // Navigate to the admin dashboard when login is successful
       navigate('/admin-dashboard/dashboard');
     } else {
       alert('Invalid email or password');
     }
   };
+
 
   return (
     <div className="login-page">
