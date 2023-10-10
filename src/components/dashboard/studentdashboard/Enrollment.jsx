@@ -1,30 +1,17 @@
 import React, { useState } from 'react';
 import './studentdashboardcss/Enrollment.css';
 
-
 function Enrollment() {
   const [firstname, setFirstName] = useState('');
   const [lastname, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [contact_no, setNumber] = useState('');
   const [course, setSelectedCourse] = useState('');
-  
 
-  const courseOptions = [
-    'Animation',
-    'Web Dev',
-    'Sys Dev',
-    'Bscs',
-  ];
+  const courseOptions = ['Animation', 'Web Dev', 'Sys Dev', 'Bscs'];
 
   const handleEnrollment = () => {
-    if (
-      firstname === '' ||
-      lastname === '' ||
-      email === '' ||
-      contact_no === '' ||
-      course === ''
-    ) {
+    if (firstname === '' || lastname === '' || email === '' || contact_no === '' || course === '') {
       alert('All fields are required');
     } else {
       // Create an enrollment object to send to the server
@@ -34,43 +21,48 @@ function Enrollment() {
         email: email,
         contact_no: contact_no,
         course: course,
-       
-
       };
 
-      const yourToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJKb3BoZXIgSm9lIiwibGFzdG5hbWUiOiJSaWJvIiwiZW1haWwiOiJqb3NpLnJpYm8udXBAcGhpbm1hZWQuY29tIiwiaWQiOiI2NTIzNzI0ZDJhZjIzMjFmMTVhNjIxYmMiLCJjb250YWN0X25vIjo5NDU3NDQ1OTIxLCJpYXQiOjE2OTY4MjE4NTV9._O3YxEsSVzKCdovQ8ronsy2gIRBV71SF2Y4T7rPXvBI';
-      
-      // Send a POST request to the enrollment URL
-      fetch('http://localhost:4000/enroll', {
-  method: 'POST',
-  headers: {
-    'Authorization': `Bearer ${yourToken}`,
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(enrollmentData),
-})
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    console.log('Enrollment request successful:', data);
-  })
-  .catch((error) => {
-    console.error('Error sending enrollment request:', error);
-    alert('An error occurred while enrolling. Please try again.');
-  })
+      // Retrieve the user ID from local storage
+      const user = JSON.parse(localStorage.getItem('user'));
+
+      // Retrieve the user's token
+      const yourToken = user.token;
+
+      // Send a POST request to the enrollment URL with the user ID
+      fetch('http://localhost:4000/enroll/', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${yourToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(enrollmentData),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log('Enrollment request successful:', data);
+          if (data.error) {
+            alert('Enrollment failed: ' + data.error);
+          } else {
+            alert('Enrollment successful');
+          }
+        })
         .catch((error) => {
           console.error('Error sending enrollment request:', error);
           alert('An error occurred while enrolling. Please try again.');
         });
     }
   };
+
   return (
     <div className="form-container">
       <div className="row">
+          <div className="row">
         <div className="column">
           <label htmlFor="firstname">First Name*</label>
           <input
@@ -134,6 +126,7 @@ function Enrollment() {
             ))}
           </select>
         </div>
+      </div>
       </div>
       <div className="button-group">
         <button onClick={handleEnrollment} className="submit-button">

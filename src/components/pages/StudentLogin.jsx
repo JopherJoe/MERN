@@ -10,7 +10,7 @@ function StudentLogin() {
 
   const handleLogin = async () => {
     try {
-      window.localStorage.setItem("userType", "admin");
+      window.localStorage.setItem("userType", "student");
       const response = await fetch('http://localhost:4000/user/login', {
         method: 'POST',
         headers: {
@@ -18,8 +18,11 @@ function StudentLogin() {
         },
         body: JSON.stringify({ email, password }),
       });
-
+  
       if (response.ok) {
+        const userData = await response.json(); // Parse the response JSON
+        localStorage.setItem("user", JSON.stringify(userData)); // Store user data, not the entire response
+        console.log("User Data:", userData); // Log user data
         navigate('/student-dashboard/home');
       } else {
         console.error('Login failed');
