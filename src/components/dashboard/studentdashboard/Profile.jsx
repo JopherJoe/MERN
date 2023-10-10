@@ -4,6 +4,7 @@ import './studentdashboardcss/Profile.css';
 
 const Profile = () => {
   const [profileData, setProfileData] = useState({
+
     user: {
       firstname: "",
       lastname: "",
@@ -11,7 +12,7 @@ const Profile = () => {
       contact_no: "",
     },
     enrollment: {
-      course: "", // Initialize with an empty string
+      course: "", 
     },
   });
 
@@ -26,8 +27,9 @@ const Profile = () => {
 
   // Function to fetch student data from the server
   const fetchProfileData = () => {
-    const yourToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJKb3BoZXIgSm9lIiwibGFzdG5hbWUiOiJSaWJvIiwiZW1haWwiOiJqb3NpLnJpYm8udXBAcGhpbm1hZWQuY29tIiwiaWQiOiI2NTIzNzI0ZDJhZjIzMjFmMTVhNjIxYmMiLCJjb250YWN0X25vIjo5NDU3NDQ1OTIxLCJpYXQiOjE2OTY4MjE4NTV9._O3YxEsSVzKCdovQ8ronsy2gIRBV71SF2Y4T7rPXvBI';
-    const userId = '6523724d2af2321f15a621bc'; // Replace with the actual user ID
+    const user = JSON.parse(localStorage.getItem("user"))
+    const yourToken = user.token;
+    const userId = user.userProfile.id; // Replace with the actual user ID
   
     fetch(`http://localhost:4000/todos/findById/${userId}`, {
       method: 'GET',
@@ -39,7 +41,7 @@ const Profile = () => {
       .then(async (response) => {
         console.log("Response Status:", response.status);
         if (!response.ok) {
-          const errorMessage = await response.text(); // Get the error message from the response body
+          const errorMessage = await response.text();
           throw new Error(`HTTP Error! Status: ${response.status}, Message: ${errorMessage}`);
         }
         return response.json();
