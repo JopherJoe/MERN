@@ -40,7 +40,7 @@ function Enrollees() {
           </tbody>
         </table>
       ) : (
-        <p>No enrollment requests available.</p>
+        <p>Wala pang enrolled na user</p>
       )}
     </div>
   );

@@ -18,7 +18,7 @@ class Dashboard extends Component {
           <Button href="/admin-dashboard/registered-student">View more</Button>
         </Card>
         <Card className="dashboard-card">
-          <Card.Title>Enrollment Requests</Card.Title>
+          <Card.Title>Enrolled Student</Card.Title>
           <p>{this.state.enrollmentRequests}</p>
           <Button href="/admin-dashboard/enrollees">View more</Button>
         </Card>

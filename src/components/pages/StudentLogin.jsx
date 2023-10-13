@@ -62,11 +62,6 @@ function StudentLogin() {
         </button>
         </div>
         </form>
-        <div>
-        <Link to="/forgot-password" className="small-text">
-            <p className="small-text">Forgot Password?</p>
-          </Link>
-        </div>
         <div className="button-group">
         <Link to="/student-create-account" className="create-account-button" >Create Account</Link>
         </div>

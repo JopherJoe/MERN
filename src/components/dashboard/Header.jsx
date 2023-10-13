@@ -5,9 +5,9 @@ import { AiOutlineLogout } from 'react-icons/ai'
 function Header({OpenSidebar}) {
   const navigate = useNavigate()
   const handleLogout = () => {
-    console.log("Logged out");
-    window.localStorage.removeItem("userType")
+    window.localStorage.removeItem("usrType")
     navigate('/');
+    console.log("Logged out");
  };
   
   return (
@@ -22,4 +22,4 @@ function Header({OpenSidebar}) {
   )
 }
 
-export default Header
+export default Header;

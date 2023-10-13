@@ -37,6 +37,7 @@ input {
     background-color: #1b4de4;
     color: black;
     border: none;
+    width: 100px;
     border-radius: 20px;
     text-align: center;
     text-decoration: none;
@@ -50,7 +51,19 @@ input {
     color: white;
     text-align: center; 
 }
-input, select { /* Apply the styles to both input and select elements */
+input, select { 
     width: 100%;
     padding: 5px;
-  }
+}
+@media screen and (max-width: 768px) {
+    .submit-button {
+        padding: 8px 16px; 
+        font-size: 14px;   
+    }
+}
+@media screen and (max-width: 480px) {
+    .submit-button {
+        padding: 6px 12px;
+        font-size: 6px;
+    }
+}
