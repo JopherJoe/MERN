@@ -1,32 +1,32 @@
 .profile-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px;
-    margin: 0 auto;
-    text-align: left;
-    align-items: center; 
-    gap: 10px; 
-  }
-  .text-field{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px; 
-    
-  }
-  .profile-container label, h1 {
-    color: white;
-    font-weight: bold; 
-  }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  margin: 0 auto;
+  text-align: left;
+  align-items: center; 
+  gap: 10px; 
+}
+.text-field{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; 
   
-  .horizontal {
-    display: flex;
-    align-items: center;
-    margin-left: 15px;
-  }
-  .MuiInputBase-input {
-    color: white !important; 
-  }
+}
+.profile-container label, h1 {
+  color: white;
+  font-weight: bold; 
+}
+
+.horizontal {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+.MuiInputBase-input {
+  color: white !important; 
+}

@@ -13,6 +13,7 @@ function ShiftingCourse() {
  //const navigate = useNavigate();
 
   const handleShiftingCourse = () => {
+    
     if (firstName === '' || lastName === '' || prevCourse === '' || newCourse === '' || reasonShift === '') {
       alert('All fields are required');
     } else {

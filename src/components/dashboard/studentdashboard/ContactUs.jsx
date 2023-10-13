@@ -8,20 +8,20 @@ function ContactUs() {
   return (
 <div className="top-paragraphs">
       <p>
-        <BsFillTelephoneFill icon/>
+        <BsFillTelephoneFill/>
         <a href="tel:(075) 522-5635">(075) 522-5635 (TEL)</a> |{' '}
         <a href="tel:(075) 522-2496">(075) 522-2496 (FAX)</a>
       </p>
       <p>
-        <BiDialpadAlt icon />
+        <BiDialpadAlt />
         <a href="njichole@gmail.com">(DAGUPAN) +63 995-078-5660</a>
       </p>
       <p>
-        <BiCurrentLocation icon/>
+        <BiCurrentLocation />
         Arellano Street, Dagupan City, 2400, Pangasinan
       </p>
       <p>
-        <AiOutlineMail icon />
+        <AiOutlineMail />
         <a href="https://mail.google.com/mail/u/0/#inbox">EMAIL: info.up@phinmaed.com</a>
       </p>
       <p>Our Story | Our Mission | PHINMA Education</p>

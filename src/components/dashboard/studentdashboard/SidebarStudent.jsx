@@ -10,7 +10,9 @@ import {BiRegistered} from 'react-icons/bi';
 
 function SidebardStudent({ openSidebarToggle, OpenSidebar }) {
   const [isCiteCoursesOpen, setIsCiteCoursesOpen] = useState(false);
-
+  const userFirstName = localStorage.getItem("userFirstName");
+  const userLastName = localStorage.getItem("userLastName"); 
+  
   const toggleCiteCourses = () => {
     setIsCiteCoursesOpen(!isCiteCoursesOpen);
   };
@@ -19,8 +21,12 @@ function SidebardStudent({ openSidebarToggle, OpenSidebar }) {
     <>
       <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive" : ""}>
         <div className='sidebar-title'>
-          <div className='sidebar-brand'>
-            <BsFillFilePersonFill className='icon_header' /> Student
+        <div className='sidebar-brand'>
+            <BsFillFilePersonFill className='icon_header' /> 
+            {userFirstName && userLastName
+              ? `${userFirstName} ${userLastName}`
+              : "Student"
+            }
           </div>
           <span className='icon close_icon' onClick={OpenSidebar}>X</span>
         </div>
@@ -98,3 +104,6 @@ function SidebardStudent({ openSidebarToggle, OpenSidebar }) {
 }
 
 export default SidebardStudent;
+
+
+

@@ -14,7 +14,7 @@ function Enrollment() {
     if (firstname === '' || lastname === '' || email === '' || contact_no === '' || course === '') {
       alert('All fields are required');
     } else {
-      // Create an enrollment object to send to the server
+
       const enrollmentData = {
         firstname: firstname,
         lastname: lastname,
@@ -22,14 +22,10 @@ function Enrollment() {
         contact_no: contact_no,
         course: course,
       };
-
-      // Retrieve the user ID from local storage
+      
       const user = JSON.parse(localStorage.getItem('user'));
-
-      // Retrieve the user's token
       const yourToken = user.token;
 
-      // Send a POST request to the enrollment URL with the user ID
       fetch('http://localhost:4000/enroll/', {
         method: 'POST',
         headers: {
