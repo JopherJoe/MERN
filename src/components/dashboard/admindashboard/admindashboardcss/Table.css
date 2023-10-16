@@ -1,0 +1,59 @@
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;    
+    margin: 0 auto;
+    width: 500px;
+}
+p {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color:white;
+}
+table {
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+th, td {
+    border: 1px solid white;
+    padding: 5px;
+    color: white;
+}
+th {
+    text-align: center;
+    color: white;
+}
+login-button{
+    padding: 10px 20px;
+    background-color: #1b4de4;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+} 
+@media (max-width: 576px) {
+  .centered {
+    width: 100%;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  th, td {
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+
+  login-button {
+    width: 100%;
+  }
+}

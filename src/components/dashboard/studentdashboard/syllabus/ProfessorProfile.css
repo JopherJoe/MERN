@@ -1,0 +1,55 @@
+/* Professor Profile Modal */
+.professor-profile-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 30px;
+  width: 80%; /* Increase the width to make it bigger */
+  max-height: 80%; /* Increase the max height */
+  overflow: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: sans-serif;
+  text-align: center; /* Center the text horizontally */
+}
+
+.professor-profile-modal h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-family: 'Poppins', sans-serif;
+  color: black;
+}
+
+.professor-profile-modal p {
+  font-size: 16px;
+  color: black;
+  margin-bottom: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.professor-profile-modal button {
+  display: block;
+  margin-top: 15px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media (max-width: 440px) {
+  .professor-profile-modal {
+    max-width: 95%;
+  }
+
+  .professor-profile-modal h2 {
+    font-size: 20px;
+  }
+
+  .professor-profile-modal p {
+    font-size: 14px;
+  }
+}
