@@ -94,7 +94,7 @@ function Enrollment() {
 
   return (
     <div className="htmlform-container">
-      <h1>Enrollment htmlForm</h1>
+      <h1>Enrollment</h1>
       <Card>
         <CardContent>
           <div className="column">

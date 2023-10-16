@@ -9,15 +9,17 @@ function StudentCreateAccountForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [contact_no, setContact_No] = useState('');
+  const [username, setUsername] = useState('')
 
   const navigate = useNavigate();
 
   const handleCreateAccount = async () => {
-    if (firstname === '' || lastname === '' || email === '' || password === '' || contact_no === '') {
+    if (username === '' || firstname === '' || lastname === '' || email === '' || password === '' || contact_no === '') {
       alert('All fields are required');
     } else {
       try {
         const response = await axios.post('http://localhost:4000/user/signup', {
+          username,
           firstname,
           lastname,
           email,
@@ -49,6 +51,15 @@ function StudentCreateAccountForm() {
       <h2>Create Account</h2>
       <form>
       <div className="input-group">
+        <label className="label" htmlFor="username">Username:</label>
+          <input
+            name="username"
+            id="username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}/>
+            </div>
+            <div className="input-group">
         <label className="label" htmlFor="firstname">First Name:</label>
           <input
             name="firstname"
